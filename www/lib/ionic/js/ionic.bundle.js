@@ -1097,7 +1097,7 @@ window.ionic.version = '1.0.0-beta.13';
      * @param   {Touch}     touch2
      * @returns {Number}    distance
      */
-    getDistance: function getDistance(touch1, touch2) {
+    getdistance: function getdistance(touch1, touch2) {
       var x = touch2.pageX - touch1.pageX,
       y = touch2.pageY - touch1.pageY;
       return Math.sqrt((x*x) + (y*y));
@@ -1114,8 +1114,8 @@ window.ionic.version = '1.0.0-beta.13';
     getScale: function getScale(start, end) {
       // need two fingers...
       if(start.length >= 2 && end.length >= 2) {
-        return this.getDistance(end[0], end[1]) /
-          this.getDistance(start[0], start[1]);
+        return this.getdistance(end[0], end[1]) /
+          this.getdistance(start[0], start[1]);
       }
       return 1;
     },
@@ -1300,7 +1300,7 @@ window.ionic.version = '1.0.0-beta.13';
         velocityX   : velocity.x,
         velocityY   : velocity.y,
 
-        distance    : ionic.Gestures.utils.getDistance(startEv.center, ev.center),
+        distance    : ionic.Gestures.utils.getdistance(startEv.center, ev.center),
         angle       : ionic.Gestures.utils.getAngle(startEv.center, ev.center),
         direction   : ionic.Gestures.utils.getDirection(startEv.center, ev.center),
 
@@ -2356,7 +2356,7 @@ window.ionic.version = '1.0.0-beta.13';
  * with the tap system. For example, mapping libraries like Google or Leaflet Maps often implement
  * a touch detection system which conflicts with Ionic's tap system.
  *
- * ### Disabling the tap system
+ * ### disabling the tap system
  *
  * To disable the tap for an element and all of its children elements,
  * add the attribute `data-tap-disabled="true"`.
@@ -2483,7 +2483,7 @@ ionic.tap = {
            (/^(file|range)$/i).test(e.target.type) ||
            (e.target.dataset ? e.target.dataset.preventScroll : e.target.getAttribute('data-prevent-scroll')) == 'true' || // manually set within an elements attributes
            (!!(/^(object|embed)$/i).test(e.target.tagName)) ||  // flash/movie/object touches should not try to scroll
-           ionic.tap.isElementTapDisabled(e.target); // check if this element, or an ancestor, has `data-tap-disabled` attribute
+           ionic.tap.isElementTapdisabled(e.target); // check if this element, or an ancestor, has `data-tap-disabled` attribute
   },
 
   isTextInput: function(ele) {
@@ -2564,7 +2564,7 @@ ionic.tap = {
     if(!ele || ele.disabled || (/^(file|range)$/i).test(ele.type) || (/^(object|video)$/i).test(ele.tagName) || ionic.tap.isLabelContainingFileInput(ele) ) {
       return true;
     }
-    return ionic.tap.isElementTapDisabled(ele);
+    return ionic.tap.isElementTapdisabled(ele);
   },
 
   isLabelContainingFileInput: function(ele) {
@@ -2575,11 +2575,11 @@ ionic.tap = {
     return false;
   },
 
-  isElementTapDisabled: function(ele) {
+  isElementTapdisabled: function(ele) {
     if(ele && ele.nodeType === 1) {
       var element = ele;
       while(element) {
-        if( (element.dataset ? element.dataset.tapDisabled : element.getAttribute('data-tap-disabled')) == 'true' ) {
+        if( (element.dataset ? element.dataset.tapdisabled : element.getAttribute('data-tap-disabled')) == 'true' ) {
           return true;
         }
         element = element.parentElement;
@@ -3264,7 +3264,7 @@ ionic.DomUtil.ready(function(){
  */
 
 var keyboardViewportHeight = getViewportHeight();
-var keyboardIsOpen;
+var keyboardisOpen;
 var keyboardActiveElement;
 var keyboardFocusOutTimer;
 var keyboardFocusInTimer;
@@ -3345,7 +3345,7 @@ function keyboardNativeShow(e) {
 }
 
 function keyboardBrowserFocusIn(e) {
-  if( !e.target || !ionic.tap.isTextInput(e.target) || ionic.tap.isDateInput(e.target) || !keyboardIsWithinScroll(e.target) ) return;
+  if( !e.target || !ionic.tap.isTextInput(e.target) || ionic.tap.isDateInput(e.target) || !keyboardisWithinScroll(e.target) ) return;
 
   document.addEventListener('keydown', keyboardOnKeyDown, false);
 
@@ -3523,7 +3523,7 @@ function getViewportHeight() {
   return window.innerHeight || screen.height;
 }
 
-function keyboardIsWithinScroll(ele) {
+function keyboardisWithinScroll(ele) {
   while(ele) {
     if(ele.classList.contains(SCROLL_CONTAINER_CSS)) {
       return true;
@@ -3800,7 +3800,7 @@ var zyngaCore = { effect: {} };
               }
             }
 
-            // Disable the timeout when nothing happens for a certain
+            // disable the timeout when nothing happens for a certain
             // period of time
             if (time - lastActive > 2500) {
               clearInterval(intervalHandle);
@@ -4007,7 +4007,7 @@ ionic.views.Scroll = ionic.views.View.inherit({
 
     this.options = {
 
-      /** Disable scrolling on x-axis by default */
+      /** disable scrolling on x-axis by default */
       scrollingX: false,
       scrollbarX: true,
 
@@ -6054,7 +6054,7 @@ ionic.views.Scroll = ionic.views.View.inherit({
    * @param   {Touch}     touch2
    * @returns {Number}    distance
    */
-  __getDistance: function getDistance(touch1, touch2) {
+  __getdistance: function getdistance(touch1, touch2) {
     var x = touch2.pageX - touch1.pageX,
     y = touch2.pageY - touch1.pageY;
     return Math.sqrt((x*x) + (y*y));
@@ -6074,8 +6074,8 @@ ionic.views.Scroll = ionic.views.View.inherit({
 
     // need two fingers...
     if(start.length >= 2 && end.length >= 2) {
-      return self.__getDistance(end[0], end[1]) /
-        self.__getDistance(start[0], start[1]);
+      return self.__getdistance(end[0], end[1]) /
+        self.__getdistance(start[0], start[1]);
     }
     return 1;
   }
@@ -7176,7 +7176,7 @@ ionic.views.Slider = ionic.views.View.inherit({
         // ensure sliding is enabled
         if (event.touches.length > 1 ||
             event.scale && event.scale !== 1 ||
-            slider.slideIsDisabled) {
+            slider.slideIsdisabled) {
           return;
         }
 
@@ -7343,9 +7343,9 @@ ionic.views.Slider = ionic.views.View.inherit({
 
     this.enableSlide = function(shouldEnable) {
       if (arguments.length) {
-        this.slideIsDisabled = !shouldEnable;
+        this.slideIsdisabled = !shouldEnable;
       }
-      return !this.slideIsDisabled;
+      return !this.slideIsdisabled;
     },
     this.slide = function(to, speed) {
       // cancel slideshow
@@ -20490,7 +20490,7 @@ function $RootScopeProvider(){
        * @kind function
        *
        * @description
-       * Dispatches an event `name` upwards through the scope hierarchy notifying the
+       * dispatches an event `name` upwards through the scope hierarchy notifying the
        * registered {@link ng.$rootScope.Scope#$on} listeners.
        *
        * The event life cycle starts at the scope on which `$emit` was called. All
@@ -20558,7 +20558,7 @@ function $RootScopeProvider(){
        * @kind function
        *
        * @description
-       * Dispatches an event `name` downwards to all child scopes (and their children) notifying the
+       * dispatches an event `name` downwards to all child scopes (and their children) notifying the
        * registered {@link ng.$rootScope.Scope#$on} listeners.
        *
        * The event life cycle starts at the scope on which `$broadcast` was called. All
@@ -21387,7 +21387,7 @@ function $SceDelegateProvider() {
  * That said, here's how you can completely disable SCE:
  *
  * ```
- * angular.module('myAppWithSceDisabledmyApp', []).config(function($sceProvider) {
+ * angular.module('myAppWithScedisabledmyApp', []).config(function($sceProvider) {
  *   // Completely disable SCE.  For demonstration purposes only!
  *   // Do not use in new projects.
  *   $sceProvider.enabled(false);
@@ -23479,7 +23479,7 @@ var htmlAnchorDirective = valueFn({
 
 /**
  * @ngdoc directive
- * @name ngDisabled
+ * @name ngdisabled
  * @restrict A
  * @priority 100
  *
@@ -23487,8 +23487,8 @@ var htmlAnchorDirective = valueFn({
  *
  * We shouldn't do this, because it will make the button enabled on Chrome/Firefox but not on IE8 and older IEs:
  * ```html
- * <div ng-init="scope = { isDisabled: false }">
- *  <button disabled="{{scope.isDisabled}}">Disabled</button>
+ * <div ng-init="scope = { isdisabled: false }">
+ *  <button disabled="{{scope.isdisabled}}">disabled</button>
  * </div>
  * ```
  *
@@ -23496,7 +23496,7 @@ var htmlAnchorDirective = valueFn({
  * such as disabled. (Their presence means true and their absence means false.)
  * If we put an Angular interpolation expression into such an attribute then the
  * binding information would be lost when the browser removes the attribute.
- * The `ngDisabled` directive solves this problem for the `disabled` attribute.
+ * The `ngdisabled` directive solves this problem for the `disabled` attribute.
  * This complementary directive is not removed by the browser and so provides
  * a permanent reliable place to store the binding information.
  *
@@ -23516,7 +23516,7 @@ var htmlAnchorDirective = valueFn({
     </example>
  *
  * @element INPUT
- * @param {expression} ngDisabled If the {@link guide/expression expression} is truthy,
+ * @param {expression} ngdisabled If the {@link guide/expression expression} is truthy,
  *     then special attribute "disabled" will be set on the element
  */
 
@@ -28410,13 +28410,13 @@ var ngRepeatDirective = ['$parse', '$animate', function($parse, $animate) {
       var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
 
       it('should check ng-show / ng-hide', function() {
-        expect(thumbsUp.isDisplayed()).toBeFalsy();
-        expect(thumbsDown.isDisplayed()).toBeTruthy();
+        expect(thumbsUp.isdisplayed()).toBeFalsy();
+        expect(thumbsDown.isdisplayed()).toBeTruthy();
 
         element(by.model('checked')).click();
 
-        expect(thumbsUp.isDisplayed()).toBeTruthy();
-        expect(thumbsDown.isDisplayed()).toBeFalsy();
+        expect(thumbsUp.isdisplayed()).toBeTruthy();
+        expect(thumbsDown.isdisplayed()).toBeFalsy();
       });
     </file>
   </example>
@@ -28566,13 +28566,13 @@ var ngShowDirective = ['$animate', function($animate) {
       var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
 
       it('should check ng-show / ng-hide', function() {
-        expect(thumbsUp.isDisplayed()).toBeFalsy();
-        expect(thumbsDown.isDisplayed()).toBeTruthy();
+        expect(thumbsUp.isdisplayed()).toBeFalsy();
+        expect(thumbsDown.isdisplayed()).toBeTruthy();
 
         element(by.model('checked')).click();
 
-        expect(thumbsUp.isDisplayed()).toBeTruthy();
-        expect(thumbsDown.isDisplayed()).toBeFalsy();
+        expect(thumbsUp.isdisplayed()).toBeTruthy();
+        expect(thumbsDown.isdisplayed()).toBeFalsy();
       });
     </file>
   </example>
@@ -29369,12 +29369,12 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
           var locals = {},
               values = valuesFn(scope);
           if (values) {
-            var toDisplay = new Array(values.length);
+            var todisplay = new Array(values.length);
             for (var i = 0, ii = values.length; i < ii; i++) {
               locals[valueName] = values[i];
-              toDisplay[i] = displayFn(scope, locals);
+              todisplay[i] = displayFn(scope, locals);
             }
-            return toDisplay;
+            return todisplay;
           }
         }, render);
 
@@ -30515,7 +30515,7 @@ angular.module('ngAnimate', ['ng'])
         //the element is not currently attached to the document body or then completely close
         //the animation if any matching animations are not found at all.
         //NOTE: IE8 + IE9 should close properly (run closeAnimation()) in case an animation was found.
-        if (skipAnimations || animationsDisabled(element, parentElement)) {
+        if (skipAnimations || animationsdisabled(element, parentElement)) {
           fireDOMOperation();
           fireBeforeCallbackAsync();
           fireAfterCallbackAsync();
@@ -30725,7 +30725,7 @@ angular.module('ngAnimate', ['ng'])
         }
       }
 
-      function animationsDisabled(element, parentElement) {
+      function animationsdisabled(element, parentElement) {
         if (rootAnimateState.disabled) {
           return true;
         }
@@ -36734,7 +36734,7 @@ function($ionicLoadingConfig, $ionicBody, $ionicTemplateLoader, $ionicBackdrop, 
 
     loadingShowDelay.then(getLoader).then(function(loader) {
       deregisterBackAction();
-      //Disable hardware back button while loading
+      //disable hardware back button while loading
       deregisterBackAction = $ionicPlatform.registerBackButtonAction(
         angular.noop,
         PLATFORM_BACK_BUTTON_PRIORITY_LOADING
@@ -40624,7 +40624,7 @@ IonicModule
         'ng-value': attr.ngValue,
         'ng-model': attr.ngModel,
         'ng-checked': attr.ngChecked,
-        'ng-disabled': attr.ngDisabled,
+        'ng-disabled': attr.ngdisabled,
         'ng-true-value': attr.ngTrueValue,
         'ng-false-value': attr.ngFalseValue,
         'ng-change': attr.ngChange
@@ -42441,7 +42441,7 @@ IonicModule
  * }
  * ```
  *
- * Displaying the previous title on the back button, again using
+ * displaying the previous title on the back button, again using
  * {@link ionic.service:$ionicNavBarDelegate}.
  *
  * ```html
@@ -43148,7 +43148,7 @@ IonicModule
           'disabled': attr.disabled,
           'ng-value': attr.ngValue,
           'ng-model': attr.ngModel,
-          'ng-disabled': attr.ngDisabled,
+          'ng-disabled': attr.ngdisabled,
           'ng-change': attr.ngChange
       }, function(value, name) {
         if (isDefined(value)) {
@@ -43222,7 +43222,7 @@ IonicModule
  * refresher.
  * @param {string=} refreshing-text The text to display after the user lets go of
  * the refresher.
- * @param {boolean=} disable-pulling-rotation Disables the rotation animation of the pulling
+ * @param {boolean=} disable-pulling-rotation disables the rotation animation of the pulling
  * icon when it reaches its activated threshold. To be used with a custom `pulling-icon`.
  *
  */
@@ -43565,12 +43565,12 @@ function($timeout, $ionicGesture, $window) {
               // we already have a starting point, figure out which direction they're going
               var endCoord = ionic.tap.pointerCoord(gestureEvt.gesture.srcEvent);
 
-              var xDistance = Math.abs(endCoord.x - startCoord.x);
-              var yDistance = Math.abs(endCoord.y - startCoord.y);
+              var xdistance = Math.abs(endCoord.x - startCoord.x);
+              var ydistance = Math.abs(endCoord.y - startCoord.y);
 
-              var scrollAxis = ( xDistance < yDistance ? 'y' : 'x' );
+              var scrollAxis = ( xdistance < ydistance ? 'y' : 'x' );
 
-              if( Math.max(xDistance, yDistance) > 30 ) {
+              if( Math.max(xdistance, ydistance) > 30 ) {
                 // ok, we pretty much know which way they're going
                 // let's lock it in
                 primaryScrollAxis = scrollAxis;
@@ -44292,7 +44292,7 @@ function($ionicGesture, $timeout) {
         'ng-value': attr.ngValue,
         'ng-model': attr.ngModel,
         'ng-checked': attr.ngChecked,
-        'ng-disabled': attr.ngDisabled,
+        'ng-disabled': attr.ngdisabled,
         'ng-true-value': attr.ngTrueValue,
         'ng-false-value': attr.ngFalseValue,
         'ng-change': attr.ngChange

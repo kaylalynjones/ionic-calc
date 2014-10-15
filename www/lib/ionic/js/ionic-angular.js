@@ -1496,7 +1496,7 @@ function($ionicLoadingConfig, $ionicBody, $ionicTemplateLoader, $ionicBackdrop, 
 
     loadingShowDelay.then(getLoader).then(function(loader) {
       deregisterBackAction();
-      //Disable hardware back button while loading
+      //disable hardware back button while loading
       deregisterBackAction = $ionicPlatform.registerBackButtonAction(
         angular.noop,
         PLATFORM_BACK_BUTTON_PRIORITY_LOADING
@@ -5386,7 +5386,7 @@ IonicModule
         'ng-value': attr.ngValue,
         'ng-model': attr.ngModel,
         'ng-checked': attr.ngChecked,
-        'ng-disabled': attr.ngDisabled,
+        'ng-disabled': attr.ngdisabled,
         'ng-true-value': attr.ngTrueValue,
         'ng-false-value': attr.ngFalseValue,
         'ng-change': attr.ngChange
@@ -7203,7 +7203,7 @@ IonicModule
  * }
  * ```
  *
- * Displaying the previous title on the back button, again using
+ * displaying the previous title on the back button, again using
  * {@link ionic.service:$ionicNavBarDelegate}.
  *
  * ```html
@@ -7910,7 +7910,7 @@ IonicModule
           'disabled': attr.disabled,
           'ng-value': attr.ngValue,
           'ng-model': attr.ngModel,
-          'ng-disabled': attr.ngDisabled,
+          'ng-disabled': attr.ngdisabled,
           'ng-change': attr.ngChange
       }, function(value, name) {
         if (isDefined(value)) {
@@ -7984,7 +7984,7 @@ IonicModule
  * refresher.
  * @param {string=} refreshing-text The text to display after the user lets go of
  * the refresher.
- * @param {boolean=} disable-pulling-rotation Disables the rotation animation of the pulling
+ * @param {boolean=} disable-pulling-rotation disables the rotation animation of the pulling
  * icon when it reaches its activated threshold. To be used with a custom `pulling-icon`.
  *
  */
@@ -8327,12 +8327,12 @@ function($timeout, $ionicGesture, $window) {
               // we already have a starting point, figure out which direction they're going
               var endCoord = ionic.tap.pointerCoord(gestureEvt.gesture.srcEvent);
 
-              var xDistance = Math.abs(endCoord.x - startCoord.x);
-              var yDistance = Math.abs(endCoord.y - startCoord.y);
+              var xdistance = Math.abs(endCoord.x - startCoord.x);
+              var ydistance = Math.abs(endCoord.y - startCoord.y);
 
-              var scrollAxis = ( xDistance < yDistance ? 'y' : 'x' );
+              var scrollAxis = ( xdistance < ydistance ? 'y' : 'x' );
 
-              if( Math.max(xDistance, yDistance) > 30 ) {
+              if( Math.max(xdistance, ydistance) > 30 ) {
                 // ok, we pretty much know which way they're going
                 // let's lock it in
                 primaryScrollAxis = scrollAxis;
@@ -9054,7 +9054,7 @@ function($ionicGesture, $timeout) {
         'ng-value': attr.ngValue,
         'ng-model': attr.ngModel,
         'ng-checked': attr.ngChecked,
-        'ng-disabled': attr.ngDisabled,
+        'ng-disabled': attr.ngdisabled,
         'ng-true-value': attr.ngTrueValue,
         'ng-false-value': attr.ngFalseValue,
         'ng-change': attr.ngChange

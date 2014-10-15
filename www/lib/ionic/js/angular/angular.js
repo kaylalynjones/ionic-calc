@@ -12865,7 +12865,7 @@ function $RootScopeProvider(){
        * @kind function
        *
        * @description
-       * Dispatches an event `name` upwards through the scope hierarchy notifying the
+       * dispatches an event `name` upwards through the scope hierarchy notifying the
        * registered {@link ng.$rootScope.Scope#$on} listeners.
        *
        * The event life cycle starts at the scope on which `$emit` was called. All
@@ -12933,7 +12933,7 @@ function $RootScopeProvider(){
        * @kind function
        *
        * @description
-       * Dispatches an event `name` downwards to all child scopes (and their children) notifying the
+       * dispatches an event `name` downwards to all child scopes (and their children) notifying the
        * registered {@link ng.$rootScope.Scope#$on} listeners.
        *
        * The event life cycle starts at the scope on which `$broadcast` was called. All
@@ -13762,7 +13762,7 @@ function $SceDelegateProvider() {
  * That said, here's how you can completely disable SCE:
  *
  * ```
- * angular.module('myAppWithSceDisabledmyApp', []).config(function($sceProvider) {
+ * angular.module('myAppWithScedisabledmyApp', []).config(function($sceProvider) {
  *   // Completely disable SCE.  For demonstration purposes only!
  *   // Do not use in new projects.
  *   $sceProvider.enabled(false);
@@ -15854,7 +15854,7 @@ var htmlAnchorDirective = valueFn({
 
 /**
  * @ngdoc directive
- * @name ngDisabled
+ * @name ngdisabled
  * @restrict A
  * @priority 100
  *
@@ -15862,8 +15862,8 @@ var htmlAnchorDirective = valueFn({
  *
  * We shouldn't do this, because it will make the button enabled on Chrome/Firefox but not on IE8 and older IEs:
  * ```html
- * <div ng-init="scope = { isDisabled: false }">
- *  <button disabled="{{scope.isDisabled}}">Disabled</button>
+ * <div ng-init="scope = { isdisabled: false }">
+ *  <button disabled="{{scope.isdisabled}}">disabled</button>
  * </div>
  * ```
  *
@@ -15871,7 +15871,7 @@ var htmlAnchorDirective = valueFn({
  * such as disabled. (Their presence means true and their absence means false.)
  * If we put an Angular interpolation expression into such an attribute then the
  * binding information would be lost when the browser removes the attribute.
- * The `ngDisabled` directive solves this problem for the `disabled` attribute.
+ * The `ngdisabled` directive solves this problem for the `disabled` attribute.
  * This complementary directive is not removed by the browser and so provides
  * a permanent reliable place to store the binding information.
  *
@@ -15891,7 +15891,7 @@ var htmlAnchorDirective = valueFn({
     </example>
  *
  * @element INPUT
- * @param {expression} ngDisabled If the {@link guide/expression expression} is truthy,
+ * @param {expression} ngdisabled If the {@link guide/expression expression} is truthy,
  *     then special attribute "disabled" will be set on the element
  */
 
@@ -20785,13 +20785,13 @@ var ngRepeatDirective = ['$parse', '$animate', function($parse, $animate) {
       var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
 
       it('should check ng-show / ng-hide', function() {
-        expect(thumbsUp.isDisplayed()).toBeFalsy();
-        expect(thumbsDown.isDisplayed()).toBeTruthy();
+        expect(thumbsUp.isdisplayed()).toBeFalsy();
+        expect(thumbsDown.isdisplayed()).toBeTruthy();
 
         element(by.model('checked')).click();
 
-        expect(thumbsUp.isDisplayed()).toBeTruthy();
-        expect(thumbsDown.isDisplayed()).toBeFalsy();
+        expect(thumbsUp.isdisplayed()).toBeTruthy();
+        expect(thumbsDown.isdisplayed()).toBeFalsy();
       });
     </file>
   </example>
@@ -20941,13 +20941,13 @@ var ngShowDirective = ['$animate', function($animate) {
       var thumbsDown = element(by.css('span.glyphicon-thumbs-down'));
 
       it('should check ng-show / ng-hide', function() {
-        expect(thumbsUp.isDisplayed()).toBeFalsy();
-        expect(thumbsDown.isDisplayed()).toBeTruthy();
+        expect(thumbsUp.isdisplayed()).toBeFalsy();
+        expect(thumbsDown.isdisplayed()).toBeTruthy();
 
         element(by.model('checked')).click();
 
-        expect(thumbsUp.isDisplayed()).toBeTruthy();
-        expect(thumbsDown.isDisplayed()).toBeFalsy();
+        expect(thumbsUp.isdisplayed()).toBeTruthy();
+        expect(thumbsDown.isdisplayed()).toBeFalsy();
       });
     </file>
   </example>
@@ -21744,12 +21744,12 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
           var locals = {},
               values = valuesFn(scope);
           if (values) {
-            var toDisplay = new Array(values.length);
+            var todisplay = new Array(values.length);
             for (var i = 0, ii = values.length; i < ii; i++) {
               locals[valueName] = values[i];
-              toDisplay[i] = displayFn(scope, locals);
+              todisplay[i] = displayFn(scope, locals);
             }
-            return toDisplay;
+            return todisplay;
           }
         }, render);
 

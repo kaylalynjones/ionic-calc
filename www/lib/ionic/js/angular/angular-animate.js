@@ -859,7 +859,7 @@ angular.module('ngAnimate', ['ng'])
         //the element is not currently attached to the document body or then completely close
         //the animation if any matching animations are not found at all.
         //NOTE: IE8 + IE9 should close properly (run closeAnimation()) in case an animation was found.
-        if (skipAnimations || animationsDisabled(element, parentElement)) {
+        if (skipAnimations || animationsdisabled(element, parentElement)) {
           fireDOMOperation();
           fireBeforeCallbackAsync();
           fireAfterCallbackAsync();
@@ -1069,7 +1069,7 @@ angular.module('ngAnimate', ['ng'])
         }
       }
 
-      function animationsDisabled(element, parentElement) {
+      function animationsdisabled(element, parentElement) {
         if (rootAnimateState.disabled) {
           return true;
         }

@@ -1,1 +1,10 @@
-/* Empty. Add your own CSS if you like */
+.display {
+  font-size: 30px;
+  margin: 20px;
+  text-align: right;
+  height: 50px;
+  color: #eee;
+}
+body {
+  background-color: #000000;
+}

@@ -5,14 +5,40 @@ html
     meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width')
     title
     link(href='css/ionic.app.css', rel='stylesheet')
-    // ionic/angularjs js
+    link(href='css/style.css', rel='stylesheet')
     script(src='lib/ionic/js/ionic.bundle.js')
-    // cordova script (this will be a 404 during development)
     script(src='cordova.js')
-    // your app's js
     script(src='js/app.js')
-  body(ng-app='kj-calculator')
-    ion-pane
-      ion-header-bar.bar-stable
-        h1.title Calculator
-      ion-content
+    script(src='js/main_controller.js')
+  body(ng-app='kj-calculator', ng-controller='MainCtrl')
+    .bar.bar-header.bar-dark
+      h1.title.ion-calculator &nbsp Calculator
+
+    ion-content.has-header
+      .display {{display}}
+      .button-bar
+        a.button.button-dark(ng-click='number(7)') 7
+        a.button.button-dark(ng-click='number(8)') 8
+        a.button.button-dark(ng-click='number(9)') 9
+        a.button.ion-android-add.button-dark(ng-click='symbol("+")')
+      .button-bar
+        a.button.button-dark(ng-click='number(4)') 4
+        a.button.button-dark(ng-click='number(5)') 5
+        a.button.button-dark(ng-click='number(6)') 6
+        a.button.ion-android-remove.button-dark(ng-click='symbol("-")')
+      .button-bar
+        a.button.button-dark(ng-click='number(1)') 1
+        a.button.button-dark(ng-click='number(2)') 2
+        a.button.button-dark(ng-click='number(3)') 3
+        a.button.ion-android-close.button-dark(ng-click='symbol("*")')
+      .button-bar
+        a.button.button-dark(ng-click='number(0)') 0
+        a.button.button-dark(ng-click='decimal()') .
+        a.button.button-royal(ng-click='calc()') =
+        a.button.button-dark(ng-click='symbol("/")') /
+      .button-bar
+        a.button.button-block.button-assertive(ng-click='clear()') Clear
+
+    .bar.bar-footer.bar-dark
+      .title
+        small &copy; 2014, Kayla Jones
